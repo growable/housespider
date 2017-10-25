@@ -1,0 +1,13 @@
+{
+  "name": "housespider",
+  "version":"1.0.0",
+  "description":"To get house price.",
+  "main": "app.js",
+  "author":"yhdeng",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "superagent": "^3.7.0",
+    "utility": "^1.13.1"
+  }
+}
