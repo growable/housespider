@@ -3,7 +3,7 @@
   "version":"1.0.0",
   "description":"To get house price.",
   "main": "app.js",
-  "author":"yhdeng",
+  "author":"growable",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
