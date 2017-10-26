@@ -1,13 +1,30 @@
 {
-  "name": "housespider",
-  "version":"1.0.0",
-  "description":"To get house price.",
+  "name": "nodespider",
+  "version": "1.0.0",
+  "description": "self study demo",
   "main": "app.js",
-  "author":"growable",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/growable/nodespider.git"
+  },
+  "keywords": [
+    "node",
+    "spider"
+  ],
+  "author": "growable",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/growable/nodespider/issues"
+  },
+  "homepage": "https://github.com/growable/nodespider#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "eventproxy": "^1.0.0",
     "express": "^4.16.2",
     "superagent": "^3.7.0",
-    "utility": "^1.13.1"
+    "url": "^0.11.0"
   }
 }
