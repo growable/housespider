@@ -1,4 +1,3 @@
-
 /**
  * [mysql Mysql db object, connect and close]
  * @type {[type]}
@@ -18,12 +17,25 @@ function MysqlQuery () {
         return pool;
     };
 
+    this.escape = function(param) {
 
-    this.query = function() {
+        return pool.escape(param);
+    }
+
+    /**
+     * [description]
+     * @param  {[string]}   sql    [description]
+     * @param  {Function} callback [description]
+     * @return {[type]}            [description]
+     */
+    this.query = function(sql, callback) {
+
         pool.getConnection(function (err, connection) {
+            if (err) throw err;
+
             // Use the connection
-            connection.query(sql, function (err, rows) {
-                callback(err, rows);
+            connection.query(sql, function (err, rows, fields) {
+                callback(err, rows, fields);
                 connection.release();
             });
         });

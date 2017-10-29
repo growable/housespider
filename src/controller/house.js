@@ -23,22 +23,28 @@ function House () {
 
     this._getList = function () {
 
-        superagent.get('http://sh.lianjia.com/ershoufang/sijing')
-                .end(function(err, res) {
-                    if (err) {
-                        // return next(err);
-                    }
+        for (var i = 1; i < 20; i++) {
+            //p22 表示200-300W
+            superagent.get('http://sh.lianjia.com/ershoufang/sijing/d' + i + 'p22')
+                    .end(function(err, res) {
+                        if (err) {
+                            // return next(err);
+                        }
 
-                    var urls = [];
+                        var urls   = [];
+                        var prices = [];
 
-                    //get page house list
-                    urls = housefilter.getHouseUrls(res.text);
+                        //get page house list
+                        urls = housefilter.getHouseUrls(res.text);
+                        prices = housefilter.getHouseListPrice(res.text);
 
-                    //save list to DB
-                    if (urls.length > 0) {
-                        housemodel.upInsertHouse(urls);
-                    }
-                });
+                        //save list to DB
+                        if (urls.length > 0) housemodel.upInsertHouse(urls);
+                        if (prices.length > 0) housemodel.upInsertHousePrice(prices);
+
+                    });
+            console.log('page'+ i);
+        }
 
     };
 
