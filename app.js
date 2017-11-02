@@ -15,13 +15,12 @@ if (params.length > 0) {
     fs.exists(cf, function(exists) {
         if (exists) {
             var c = require(cf);
-            c.main();
 
-            // if (params.length > 1) {
-            //     c.main();
-            // } else {
-            //     c.main();
-            // }
+            if (params.length > 1) {
+                c[params[1]](params.splice(0, 2));
+            } else {
+                c.main();
+            }
 
         } else {
             console.log('Controller ' + params[0] + ' not exist.');

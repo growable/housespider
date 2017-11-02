@@ -7,6 +7,8 @@ var superagent = require('superagent');
 var eventproxy = require('eventproxy');
 var url = require('url');
 
+require('superagent-proxy')(superagent); //proxy
+
 function House () {
     this.main = function () {
         this._getList();
@@ -18,6 +20,7 @@ function House () {
 
     this._getList = function () {
         superagent.get('http://sh.lianjia.com/ershoufang/sijing')
+                // .proxy('localhost:8080')
                 .end(function(err, res) {
                     if (err) {
                         return next(err);
@@ -30,7 +33,7 @@ function House () {
                         var list = $(element);
 
                         urls.push('http://sh.lianjia.com' + list.children('a').attr('href'));
-                        // console.log(list.children('a').attr('href'));
+                        console.log(list.children('a').attr('href'));
                     });
 
                     var eq = new eventproxy();
@@ -40,6 +43,8 @@ function House () {
                             console.log(urls);
                         });
                     });
+
+                    // process.exit();
 
                     urls.forEach(function(urls) {
                         superagent.get(urls)
