@@ -1,7 +1,10 @@
+
 /**
  * [params description]
  * @type {[type]}
  */
+
+'use strict';
 
 var fs = require('fs');
 
