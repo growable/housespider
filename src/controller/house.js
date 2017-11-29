@@ -1,6 +1,7 @@
 /**
  * get house price info
  */
+'use strict';
 
 var cheerio     = require('cheerio');
 var superagent  = require('superagent');
@@ -25,22 +26,25 @@ function House () {
 
         for (var i = 1; i < 20; i++) {
             //p22 表示200-300W
-            superagent.get('http://sh.lianjia.com/ershoufang/sijing/d' + i + 'p22')
+            superagent.get('http://sh.lianjia.com/ershoufang/sijing/d' + i) //p22
                     .end(function(err, res) {
                         if (err) {
                             // return next(err);
                         }
 
-                        var urls   = [];
-                        var prices = [];
+                        var urls    = [];
+                        var prices  = [];
+                        var details = [];
 
                         //get page house list
-                        urls = housefilter.getHouseUrls(res.text);
-                        prices = housefilter.getHouseListPrice(res.text);
+                        urls    = housefilter.getHouseUrls(res.text);
+                        prices  = housefilter.getHouseListPrice(res.text);
+                        details = housefilter.getHouseDetailList(res.text);
 
                         //save list to DB
-                        if (urls.length > 0) housemodel.upInsertHouse(urls);
-                        if (prices.length > 0) housemodel.upInsertHousePrice(prices);
+                        if (urls.length > 0)    housemodel.upInsertHouse(urls);
+                        if (prices.length > 0)  housemodel.upInsertHousePrice(prices);
+                        if (details.length > 0) housemodel.upInsertHouseDetail(details);
 
                     });
             console.log('page'+ i);

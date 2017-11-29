@@ -22,7 +22,7 @@ if (params.length > 0) {
             if (params.length > 1) {
                 c[params[1]](params.splice(0, 2));
             } else {
-                c.main();
+                console.log('This method is not exists');
             }
 
         } else {
